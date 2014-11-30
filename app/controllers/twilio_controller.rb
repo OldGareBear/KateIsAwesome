@@ -8,18 +8,20 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
   
   def process_sms
-    @body = params["Body"]
-    @sender = params["From"]
-    @city = params["FromCity"]
-    @state = params["FromState"]
+    body = params["Body"]
+    sender = params["From"]
+    city = params["FromCity"]
+    state = params["FromState"]
     
     response = Twilio::TwiML::Response.new do |resp|
       resp.Text "Thanks for telling us what you love about Kate!."
     end
     
-    thanks(@sender)
+    Message.create!(body: body, from: sender, city: city, state: state)
     
-    SMSLogger.log_text_message @body, @city
+    thanks(sender)
+    
+    SMSLogger.log_text_message body, city
   end
 
   protected
