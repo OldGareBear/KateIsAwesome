@@ -12,5 +12,10 @@ class TwilioController < ApplicationController
     @sender = message["From"]
     @city = message["FromCity"]
     
+    response = Twilio::TwiML::Response.new do |resp|
+      resp.Text "Thanks for telling us what you love about Kate!."
+    end
+    
+    render_twiml response
   end
 end
