@@ -7,11 +7,10 @@ class TwilioController < ApplicationController
   
   skip_before_action :verify_authenticity_token
   
-  def process_sms
-    response = Twilio::TwiML::Response.new do |resp|
-      resp.text "Thanks for telling us what you love about Kate! Please send the signature you would like to leave on your comment, or remain anonymous if you prefer =)"
-    end
+  def process_sms(message)
+    @body = message["Body"]
+    @sender = message["From"]
+    @city = message["FromCity"]
+    
   end
-  
-  render_twiml response
 end
