@@ -17,7 +17,7 @@ class TwilioController < ApplicationController
       resp.Text "Thanks for telling us what you love about Kate!."
     end
     
-    # Message.create!(body: body, from: sender, city: city, state: state)
+    Message.create!(body: body, from: sender, city: city, state: state)
     #
     # thanks(sender)
     
