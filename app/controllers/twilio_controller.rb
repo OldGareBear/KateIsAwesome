@@ -19,14 +19,21 @@ class TwilioController < ApplicationController
     
     p "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     p params
+    p body
+    p sender
+    p city
+    p state
     
-    m = Message.create!(body: body, from: sender, city: city, state: state)
+    @message = Message.new(body: body, from: sender, city: city, state: state)
     
-    p m
+    if @message.save
+      SMSLogger.log_text_message body, city
+    else
+      puts @message.errors.full_messages
+      SMSLogger.log_text_message body, city
+    end
     
     # thanks(sender)
-    
-    SMSLogger.log_text_message body, city
   end
 
   protected
