@@ -2,6 +2,9 @@
 
 <ol class="messages">
 	<% @messages.each do |message| %>
-	<li>message.body</li>
+	<li>
+		<%= message.body %>
+		<div>Sent by <%= message.from %> at <%= message.created_at %></div>
+	</li>
 	<% end %>
 </ol>
