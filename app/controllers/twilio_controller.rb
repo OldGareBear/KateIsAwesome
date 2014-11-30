@@ -17,8 +17,13 @@ class TwilioController < ApplicationController
       resp.Text "Thanks for telling us what you love about Kate!."
     end
     
-    Message.create!(body: body, from: sender, city: city, state: state)
-    #
+    p "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    p params
+    
+    m = Message.create!(body: body, from: sender, city: city, state: state)
+    
+    p m
+    
     # thanks(sender)
     
     SMSLogger.log_text_message body, city
