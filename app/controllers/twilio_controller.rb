@@ -23,13 +23,13 @@ class TwilioController < ApplicationController
     p city
     p state
     
-    @message = Message.new(body: body, from: sender, city: city, state: state)
+    message = Message.new(body: body, from: sender, city: city, state: state)
+    p message
     
-    if @message.save
-      SMSLogger.log_text_message body, city
+    if message.save
+      puts "it worked"
     else
-      puts @message.errors.full_messages
-      SMSLogger.log_text_message body, city
+      puts "it didn't work"
     end
     
     # thanks(sender)
