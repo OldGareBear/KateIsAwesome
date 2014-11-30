@@ -5,8 +5,6 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.all
     
-    puts "hello world!"
-    
     render :index
   end
   

@@ -34,3 +34,5 @@ end
 
 gem 'twilio-ruby'
 
+gem 'figaro'
+
