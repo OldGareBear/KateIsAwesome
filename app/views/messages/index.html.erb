@@ -1,5 +1,7 @@
 <h1>How is Kate awesome? Let me count the ways...</h1>
 
 <ol class="messages">
-	
+	<% @messages.each do |message| %>
+	<li>message.body</li>
+	<% end %>
 </ol>
