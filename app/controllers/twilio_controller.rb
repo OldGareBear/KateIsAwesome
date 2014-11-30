@@ -17,7 +17,6 @@ class TwilioController < ApplicationController
       resp.Text "Thanks for telling us what you love about Kate!."
     end
     
-    p "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     p params
     p body
     p sender
