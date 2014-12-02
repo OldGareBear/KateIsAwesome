@@ -26,7 +26,7 @@ class TwilioController < ApplicationController
     message = Message.new(body: body, from: sender, city: city, state: state)
     p message
     
-    if message.save
+    if message.save!
       puts "it worked"
     else
       puts "it didn't work"

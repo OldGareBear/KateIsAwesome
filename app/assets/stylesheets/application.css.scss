@@ -21,9 +21,32 @@ html, body, div, form, input, p, ul, li, img {
 	box-shadow: 0;
 	font: inherit;
 	outline: none;
+	list-style: none;
+}
+
+html {
+	height: 100%;
+}
+
+h2 {
+	margin: 0;
+	padding: 15px;
 }
 
 body {
-	font-family: sans-serif;
-	background-image: image-url('roses.jpg');
+	font-family: 'Open Sans', sans-serif;
+	background-image: image-url('purple_texture.jpeg');
+	height: 100%;
+}
+
+div.header {
+	background: #3D007A;
+	color: #00FFFF;
+	background-image: -moz-linear-gradient(top, #3D007A, #5200CC);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3D007A), to(#5200CC));
+}
+
+div.header > h2 {
+	margin: 0 auto;
+	width: 570px;
 }
