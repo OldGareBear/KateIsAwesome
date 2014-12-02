@@ -36,3 +36,9 @@ gem 'twilio-ruby'
 gem 'figaro'
 
 gem 'rails_12factor'
+
+gem 'faker'
+
+gem 'nokogiri'
+
+gem "kaminari"

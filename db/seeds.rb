@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+100.times do 
+  Message.create!(
+    body: Faker::Lorem.sentence, 
+    city: "NYC", 
+    from: "+" + Faker::Number.number(10), 
+    state: "NY", 
+    created_at: Time.now, 
+    updated_at: Time.now
+  )
+end
