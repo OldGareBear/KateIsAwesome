@@ -35,3 +35,4 @@ gem 'twilio-ruby'
 
 gem 'figaro'
 
+gem 'rails_12factor'
