@@ -11,6 +11,8 @@ class TwilioController < ApplicationController
     body = params["Body"]
     sender = params["From"]
     
+    p "~~~~~~~~~~"
+    p body.to_i > 0
     # check to see if the body is a vote
     process_like(body.to_i, sender) if body.to_i > 0
     
@@ -33,6 +35,10 @@ class TwilioController < ApplicationController
   end
   
   def process_like(id, sender)
+    p "~~~~~~~~~~"
+    p id
+    p sender
+    
     message = Message.find(id, sender)
     
     like = Like.new(message_id: id, liker: sender)
