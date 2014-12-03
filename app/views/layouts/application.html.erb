@@ -12,7 +12,18 @@
 <body>
 
 <div class="header">
-  <h2>How is Kate awesome? Let me count the ways...</h2>
+	<div class="awesome">
+    <h2>How is Kate awesome? Let me count the ways...</h2>
+  </div>
+	
+	<div class="navbar">
+		<span class="nav-btn">
+			<a href="<%= root_url %>">Home</a>
+		</span>
+		<span class="nav-btn">
+			<a href="<%= about_url %>">About</a>
+		</span>
+	</div>
 </div>
 
 <%= yield %>

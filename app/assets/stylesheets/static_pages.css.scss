@@ -1,3 +1,24 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.about-info {
+	width: 50%;
+	margin: 25px auto;
+	background: white;
+	border-radius: 20px;
+	border: 1px solid #E6E6E6;
+	padding: 10px;
+	position:relative;
+	top: -400px;
+}
+
+img.kate {
+	padding-top: 70px;
+	padding-left: 40px;
+}
+
+.about-info > p {
+	padding-left: 10px;
+	padding-bottom: 10px;
+}

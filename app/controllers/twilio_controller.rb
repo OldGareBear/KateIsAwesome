@@ -12,7 +12,10 @@ class TwilioController < ApplicationController
     sender = params["From"]
    
     # check to see if the body is a vote
-    process_like(body.to_i, sender) if body.to_i > 0
+    if body.to_i > 0
+      process_like(body.to_i, sender)
+      return
+    end
     
     city = params["FromCity"]
     state = params["FromState"]
@@ -23,12 +26,8 @@ class TwilioController < ApplicationController
     
     message = Message.new(body: body, from: sender, city: city, state: state)
    
-    if message.save!
-      puts "it worked"
-    else
-      puts "it didn't work"
-    end
-    
+    message.save!
+
     # thanks(sender)
   end
   
@@ -40,11 +39,7 @@ class TwilioController < ApplicationController
     
     return unless like
     
-    if like.save!
-      puts "it worked"
-    else
-      puts "it didn't work"
-    end
+    like.save!
   end
 
   protected

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   
   resources :likes, only: [:create, :destroy]
   
+  get '/about', :to => 'static_pages#about'
+  
   post '/twilio/process_sms' => 'twilio#process_sms'
 end
