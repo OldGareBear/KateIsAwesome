@@ -45,7 +45,6 @@ class TwilioController < ApplicationController
   protected
 
   def thanks(sender)
-    p "~~~~~~~~~~~~~ We entered the thanks method"
     sid = ENV["TWILIO_SID"]
     token = ENV["TWILIO_AUTH_TOKEN"]
     twilio_number = "7328565344"
