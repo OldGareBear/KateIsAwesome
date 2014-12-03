@@ -32,10 +32,12 @@ class TwilioController < ApplicationController
     # thanks(sender)
   end
   
-  def process_like(id)
+  def process_like(id, sender)
     message = Message.find(id, sender)
     
     like = Like.new(message_id: id, liker: sender)
+    
+    return unless like
     
     if like.save!
       puts "it worked"
