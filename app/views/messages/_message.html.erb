@@ -1,7 +1,7 @@
 <ul class="messages">
 	
 	<li class="message">
-		<%= message.body %>
+		<span class="message-id"><%= message.id %></span> <%= message.body %>
 		<div class="post-info">
 			Sent by <%= message.from.split("").each_with_index.map { |x,i| i < 8 ? x : "*" }.join[1.. -1].insert(1, "-").insert(5, "-").insert(9, "-") %> on <%= message.created_at.to_formatted_s(:long) %>
 		</div>

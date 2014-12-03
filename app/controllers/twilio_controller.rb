@@ -9,6 +9,10 @@ class TwilioController < ApplicationController
   
   def process_sms
     body = params["Body"]
+    
+    # check to see if the body is a vote
+    process_vote(body.to_i) if body.to_i > 0
+    
     sender = params["From"]
     city = params["FromCity"]
     state = params["FromState"]
@@ -17,15 +21,8 @@ class TwilioController < ApplicationController
       resp.Text "Thanks for telling us what you love about Kate!."
     end
     
-    p params
-    p body
-    p sender
-    p city
-    p state
-    
     message = Message.new(body: body, from: sender, city: city, state: state)
-    p message
-    
+   
     if message.save!
       puts "it worked"
     else
@@ -33,6 +30,10 @@ class TwilioController < ApplicationController
     end
     
     # thanks(sender)
+  end
+  
+  def process_vote(id)
+    
   end
 
   protected
