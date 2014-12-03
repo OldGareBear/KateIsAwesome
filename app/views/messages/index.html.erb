@@ -1,10 +1,16 @@
 <div class="messages-index">
-	<ul class="messages">
-		<% @messages.each do |message| %>
-		<li>
-			<%= message.body %>
-			<div class="post-info">Sent by <%= message.from.split("").each_with_index.map { |x,i| i < 8 ? x : "*" }.join[1.. -1].insert(1, "-").insert(5, "-").insert(9, "-") %> on <%= message.created_at.to_formatted_s(:long) %></div>
-		</li>
-		<% end %>
-	</ul>
+	<div class="page-nav top">
+		<%= paginate @messages %>
+	</div>
+	
+	<div class="all-messages">
+		<div class="page">
+			<%= render @messages %>
+		</div>
+	</div>
+	
+	<div class="page-nav bottom">
+		<%= paginate @messages %>
+	</div>
+	
 </div>

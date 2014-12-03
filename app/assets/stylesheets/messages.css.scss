@@ -1,3 +1,12 @@
+a {
+	text-decoration: none;
+	color: #5200CC;
+}
+
+.current {
+	color: #5200CC;
+}
+
 div.messages-index {
 	width: 50%;
 	margin: 25px auto;
@@ -10,7 +19,7 @@ ul.messages {
 	padding-top: 5px;
 }
 
-ul.messages > li {
+li.message {
 	padding: 15px;
 	border-bottom: 1px solid #E6E6E6;
 	color: #1A1A1A;
@@ -20,4 +29,36 @@ ul.messages > li {
 div.post-info {
 	font-size: 12px;
 	color: #666;
+	width: 80%;
+	display: inline-block;
+}
+
+div.page-nav {
+	padding: 5px;
+	text-align: center;
+}
+
+div.page-nav.top {
+	border-bottom: 1px solid #E6E6E6;
+}
+
+div.page-nav.bottom {
+	border-top: 1px solid #E6E6E6;
+}
+
+.next, .last {
+	padding-left: 5px;
+}
+
+img.like-btn {
+	display: inline-block;
+	width: 25px;
+	float: right;
+	position: relative;
+	top: -10px;
+	opacity: .5;
+}
+
+img.like-btn:hover {
+	cursor: pointer;
 }
