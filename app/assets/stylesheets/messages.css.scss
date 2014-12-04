@@ -9,7 +9,7 @@ a {
 
 div.messages-index {
 	width: 50%;
-	margin: 25px auto;
+	margin: 40px auto;
 	background: white;
 	border-radius: 20px;
 	border: 1px solid #E6E6E6;
@@ -83,4 +83,22 @@ div.message-body {
 	display: inline-block;
 	width: 80%;
 	padding-left: 10px;
+}
+
+p.display-likes {
+	display: inline-block;
+	float:right;
+	position: relative;
+	left: 100px;
+	top: -33px;
+	color: white;
+	background: #666;
+	opacity: .8;
+	padding: 5px;
+	border-radius: 5px;
+	
+}
+
+p.display-likes.hidden {
+	display: none;
 }

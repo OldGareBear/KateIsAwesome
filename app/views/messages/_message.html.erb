@@ -15,10 +15,11 @@
 		</div>
 		
 		<% if message.likes.length > 0 %>
-			<img class="like-btn" src="<%= image_path("buttsit-liked.png") %>">
+			<img class="like-btn" src="<%= image_path("buttsit-liked.png") %>" data-id="<%= message.id %>">
 		<% else %>
-			<img class="like-btn" src="<%= image_path("buttsit.png") %>">
+			<img class="like-btn" src="<%= image_path("buttsit.png") %>" data-id="<%= message.id %>">
 		<% end %>
+		
+		<p class="display-likes hidden" id="<%= message.id %>"><%= message.likes.count %> like(s)<p>
 	</li>
-
 </ul>
