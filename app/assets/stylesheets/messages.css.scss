@@ -13,8 +13,9 @@ div.messages-index {
 	background: white;
 	border-radius: 20px;
 	border: 1px solid #E6E6E6;
-	position:relative;
-	top: -300px;
+  //	position:relative;
+  //	top: -300px;
+  display: inline-block;
 }
 
 ul.messages {
