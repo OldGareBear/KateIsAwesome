@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203232158) do
+ActiveRecord::Schema.define(version: 20141204174503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admirers", force: true do |t|
-    t.string   "name",         null: false
     t.string   "phone_number", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "likes", force: true do |t|
     t.integer  "message_id", null: false
-    t.string   "liker",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "admirer_id"
   end
 
   create_table "messages", force: true do |t|
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141203232158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
-    t.string   "from"
+    t.integer  "admirer_id"
   end
 
 end

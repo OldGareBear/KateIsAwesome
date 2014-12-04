@@ -8,6 +8,7 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
   
   def process_sms
+    # grab sms params
     body = params["Body"]
     sender = params["From"]
     city = params["FromCity"]
@@ -22,21 +23,18 @@ class TwilioController < ApplicationController
       body.sub!(/\*(\w+(\s|$))+/, "")
     end 
    
-    # check to see if the body is a vote
+    # check to see if the body is just a like
     if body.to_i > 0
       process_like(body.to_i, sender)
       return
     end
     
-    process_sender(sender, signature)
+    save_message_and_admirer(sender, signature, body, city, state)
     
+    # thank the sender
     response = Twilio::TwiML::Response.new do |resp|
       resp.Text "Thanks for telling us what you love about Kate!."
     end
-    
-    message = Message.new(body: body, from: sender, city: city, state: state)
-   
-    message.save!
 
     thanks(sender)
   end
@@ -51,15 +49,15 @@ class TwilioController < ApplicationController
     like.save!
   end
   
-  def process_sender(sender, signature)
+  def save_message_and_admirer(sender, signature, body, city, state)
     puts "~~~~sender being processed~~~~" # debugging
     
     admirer = Admirer.find_by_sender(sender)
-    # if an admirer exists, only proceed if you are adding signature
-    return if admirer && signature.nil?
-    
-    # allow for adding/changing names
-    if admirer && signature
+  
+    if admirer && signature.nil? || admirer && signature == admirer.name
+      # we can't update an admirer without a new
+    elsif admirer && signature 
+      # allow for adding/changing names
       admirer.update(name: signature)
     else
       # a new admirer needs to be created
@@ -67,6 +65,8 @@ class TwilioController < ApplicationController
       admirer.save!
     end
     
+    message = Message.new(body: body, from: admirer.id, city: city, state: state)
+    message.save!
   end
 
   def thanks(sender)
