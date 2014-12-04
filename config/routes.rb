@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root to: "messages#index"
   
-  resources :messages, only: [:create, :destroy, :index]
+  resources :messages, only: [:create, :destroy, :index] 
   
-  resources :likes, only: [:create, :destroy]
+  resources :likes, only: [:index]
   
   get '/about', :to => 'static_pages#about'
   

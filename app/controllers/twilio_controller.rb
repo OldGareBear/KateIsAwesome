@@ -53,8 +53,8 @@ class TwilioController < ApplicationController
   
   def process_sender(sender, signature)
     puts "~~~~sender being processed~~~~" # debugging
-    admirer = Admirer.find_by_sender(sender)
     
+    admirer = Admirer.find_by_sender(sender)
     # if an admirer exists, only proceed if you are adding signature
     return if admirer && signature.nil?
     
