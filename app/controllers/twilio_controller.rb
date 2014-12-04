@@ -52,7 +52,7 @@ class TwilioController < ApplicationController
   def save_message_and_admirer(sender, signature, body, city, state)
     puts "~~~~sender being processed~~~~" # debugging
     
-    admirer = Admirer.find_by_sender(sender)
+    admirer = Admirer.find_by_phone_number(sender)
   
     if admirer && signature.nil? || admirer && signature == admirer.name
       # we can't update an admirer without a new
