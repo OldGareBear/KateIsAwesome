@@ -19,7 +19,7 @@ end
   Message.create!(
     body: Faker::Lorem.sentence,
     city: "NYC",
-    admirer_id: [0..24].to_a.sample,
+    admirer_id: (0..24).to_a.sample,
     state: "NY",
     created_at: Time.now,
     updated_at: Time.now

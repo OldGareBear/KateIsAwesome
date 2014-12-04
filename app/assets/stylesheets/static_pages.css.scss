@@ -8,9 +8,14 @@ div.about-info {
 	background: white;
 	border-radius: 20px;
 	border: 1px solid #E6E6E6;
-	padding: 10px;
 	position:relative;
-	top: -40%;
+	top: -300px;
+}
+
+div.about-info > h2 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 7px;
+	margin-bottom: 7px;
 }
 
 img.kate {
@@ -22,6 +27,6 @@ img.kate {
 }
 
 .about-info > p {
-	padding-left: 10px;
+	padding-left: 15px;
 	padding-bottom: 10px;
 }

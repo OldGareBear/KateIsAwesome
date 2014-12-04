@@ -65,7 +65,7 @@ class TwilioController < ApplicationController
       admirer.save!
     end
     
-    message = Message.new(body: body, from: admirer.id, city: city, state: state)
+    message = Message.new(body: body, admirer_id: admirer.id, city: city, state: state)
     message.save!
   end
 
