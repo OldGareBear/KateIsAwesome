@@ -12,14 +12,14 @@ class TwilioController < ApplicationController
     sender = params["From"]
     city = params["FromCity"]
     state = params["FromState"]
+    signature = nil
     
     # check for signature
-    if body =~ /\*(\w+\s)+/ # a space is always added to the message
+    if body =~ /\*(\w+(\s|$))+/
       # grab the signature
-      signature = body.match(/\*(\w+\s)+/)
+      signature = body.match(/\*(\w+(\s|$))+/)[1, -1]
       # chop off the signature
-      body.sub!(/\*(\w+\s)+/, "")
-      process_signature(signature, sender)
+      body.sub!(/\*(\w+(\s|$))+/, "")
     end 
    
     # check to see if the body is a vote
@@ -27,6 +27,8 @@ class TwilioController < ApplicationController
       process_like(body.to_i, sender)
       return
     end
+    
+    process_sender(sender, signature)
     
     response = Twilio::TwiML::Response.new do |resp|
       resp.Text "Thanks for telling us what you love about Kate!."
@@ -49,14 +51,22 @@ class TwilioController < ApplicationController
     like.save!
   end
   
-  def process_signature(signature, sender)
-    puts "~~~~signature being processed~~~~"
+  def process_sender(sender, signature)
+    puts "~~~~sender being processed~~~~" # debugging
+    admirer = Admirer.find_by_sender(sender)
     
-    #don't allow duplicate entries for the same number
-    return if Admirer.find_by_sender(sender)
+    # if an admirer exists, only proceed if you are adding signature
+    return if admirer && signature.nil?
     
-    admirer = Admirer.new(name: signature, phone_number: sender)
-    admirer.save!
+    # allow for adding/changing names
+    if admirer && signature
+      admirer.update(name: signature)
+    else
+      # a new admirer needs to be created
+      admirer = Admirer.new(name: signature, phone_number: sender)
+      admirer.save!
+    end
+    
   end
 
   def thanks(sender)
