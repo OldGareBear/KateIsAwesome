@@ -9,13 +9,14 @@ div.about-info {
 	border-radius: 20px;
 	border: 1px solid #E6E6E6;
 	position:relative;
-	top: -300px;
+	display: inline-block;
 }
 
 div.about-info > h2 {
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 7px;
 	margin-bottom: 7px;
+	color: #444;
 }
 
 img.kate {
@@ -26,9 +27,11 @@ img.kate {
 	border-radius: 10px;
 	display: inline-block;
 	float: left;
+	margin-right: 10px;
 }
 
 .about-info > p {
 	padding-left: 15px;
 	padding-bottom: 10px;
+	color: #555;
 }
