@@ -44,5 +44,3 @@ gem 'nokogiri'
 gem "kaminari"
 
 gem "will_paginate"
-
-gem "backbone-rails"
