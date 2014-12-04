@@ -10,15 +10,23 @@ class TwilioController < ApplicationController
   def process_sms
     body = params["Body"]
     sender = params["From"]
+    city = params["FromCity"]
+    state = params["FromState"]
+    
+    # check for signature
+    if body =~ /\*(\w+\s)+/ # a space is always added to the message
+      # grab the signature
+      signature = body.match(/\*(\w+\s)+/)
+      # chop off the signature
+      body.sub!(/\*(\w+\s)+/, "")
+      process_signature(signature, sender)
+    end 
    
     # check to see if the body is a vote
     if body.to_i > 0
       process_like(body.to_i, sender)
       return
     end
-    
-    city = params["FromCity"]
-    state = params["FromState"]
     
     response = Twilio::TwiML::Response.new do |resp|
       resp.Text "Thanks for telling us what you love about Kate!."
@@ -30,19 +38,26 @@ class TwilioController < ApplicationController
 
     thanks(sender)
   end
+
+  protected
   
   def process_like(id, sender)
-    
     message = Message.find(id)
-    
     like = Like.new(message_id: id, liker: sender)
     
     return unless like
-    
     like.save!
   end
-
-  protected
+  
+  def process_signature(signature, sender)
+    puts "~~~~signature being processed~~~~"
+    
+    #don't allow duplicate entries for the same number
+    return if Admirer.find_by_sender(sender)
+    
+    admirer = Admirer.new(name: signature, phone_number: sender)
+    admirer.save!
+  end
 
   def thanks(sender)
     sid = ENV["TWILIO_SID"]
@@ -57,4 +72,5 @@ class TwilioController < ApplicationController
       :body => "Thanks for sharing what you love about Kate =)"
     )
   end
+  
 end
