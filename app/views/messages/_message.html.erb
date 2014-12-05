@@ -7,7 +7,7 @@
 		</div>
 		<div class="post-info">
 			<% if message.admirer.name.nil? %>
-			Sent by <%= message.from.split("").each_with_index.map { |x,i| i < 8 ? x : "*" }.join[1.. -1].insert(1, "-").insert(5, "-").insert(9, "-") %> on <%= message.created_at.to_formatted_s(:long) %>
+			Sent by <%= message.admirer.phone_number.split("").each_with_index.map { |x,i| i < 8 ? x : "*" }.join[1.. -1].insert(1, "-").insert(5, "-").insert(9, "-") %> on <%= message.created_at.to_formatted_s(:long) %>
 			
 			<% else %>
 			Sent by <%= message.admirer.name %> on <%= message.created_at.to_formatted_s(:long) %>

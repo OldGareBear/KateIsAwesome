@@ -37,6 +37,8 @@ class TwilioController < ApplicationController
     end
 
     thanks(sender)
+    
+    redirect_to root_url
   end
 
   protected
@@ -54,6 +56,8 @@ class TwilioController < ApplicationController
     
     admirer = Admirer.find_by_phone_number(sender)
   
+    p admirer
+    
     if admirer && signature.nil? || admirer && signature == admirer.name
       # we can't update an admirer without a new
     elsif admirer && signature 
