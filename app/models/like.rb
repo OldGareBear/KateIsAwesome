@@ -1,5 +1,5 @@
 class Like < ActiveRecord::Base
-  validates :message_id, :liker, presence: true
+  validates :message_id, :admirer_id, presence: true
   
   belongs_to :message
   belongs_to :admirer
