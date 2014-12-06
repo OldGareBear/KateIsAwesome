@@ -18,9 +18,11 @@ class TwilioController < ApplicationController
     # check for signature
     if body =~ /\*(\w+(\s|$))+/
       # grab the signature
-      signature = body.match(/\*(\w+(\s|$))+/).to_s[1...-1]
-      p "~~~signature~~~"
-      p signature
+      signature = body.match(/\*(\w+(\s|$))+/)
+                      .to_s[1...-1]
+                      .split(" ")
+                      .map(&:capitalize)
+                      .join(" ")
       # chop off the signature
       body.sub!(/\*(\w+(\s|$))+/, "")
     end 
@@ -54,23 +56,15 @@ class TwilioController < ApplicationController
   end
   
   def save_message_and_admirer(sender, signature, body, city, state)
-    puts "~~~~sender being processed~~~~" # debugging
-    
     admirer = Admirer.find_by_phone_number(sender)
-  
-    p admirer
     
     if admirer && signature.nil? || admirer && signature == admirer.name
-      p "we can't update an admirer without a new signature"
-      p signature
-      p admirer.name
+      # we can't update an admirer without a new signature
     elsif admirer && signature 
-      p "allow for adding/changing names"
-      p signature
+      # allow for adding/changing names
       admirer.update(name: signature)
     else
-      p "a new admirer needs to be created"
-      p signature
+      # a new admirer needs to be created
       admirer = Admirer.new(name: signature, phone_number: sender)
       admirer.save!
     end
