@@ -18,7 +18,7 @@ class TwilioController < ApplicationController
     # check for signature
     if body =~ /\*(\w+(\s|$))+/
       # grab the signature
-      signature = body.match(/\*(\w+(\s|$))+/)[1, -1]
+      signature = body.match(/\*(\w+(\s|$))+/).to_s[1, -1]
       # chop off the signature
       body.sub!(/\*(\w+(\s|$))+/, "")
     end 
@@ -59,7 +59,7 @@ class TwilioController < ApplicationController
     p admirer
     
     if admirer && signature.nil? || admirer && signature == admirer.name
-      p "we can't update an admirer without a new"
+      p "we can't update an admirer without a new signature"
     elsif admirer && signature 
       p "allow for adding/changing names"
       p signature
