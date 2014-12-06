@@ -19,7 +19,7 @@ class TwilioController < ApplicationController
     if body =~ /\*(\w+(\s|$))+/
       # grab the signature
       signature = body.match(/\*(\w+(\s|$))+/)
-                      .to_s[1...-1]
+                      .to_s[1..-1]
                       .split(" ")
                       .map(&:capitalize)
                       .join(" ")
