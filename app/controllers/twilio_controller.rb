@@ -59,12 +59,14 @@ class TwilioController < ApplicationController
     p admirer
     
     if admirer && signature.nil? || admirer && signature == admirer.name
-      # we can't update an admirer without a new
+      p "we can't update an admirer without a new"
     elsif admirer && signature 
-      # allow for adding/changing names
+      p "allow for adding/changing names"
+      p signature
       admirer.update(name: signature)
     else
-      # a new admirer needs to be created
+      p "a new admirer needs to be created"
+      p signature
       admirer = Admirer.new(name: signature, phone_number: sender)
       admirer.save!
     end
