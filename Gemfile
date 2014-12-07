@@ -39,8 +39,10 @@ gem 'rails_12factor'
 
 gem 'faker'
 
-gem 'nokogiri'
+# gem 'nokogiri'
 
-gem "kaminari"
+gem 'kaminari'
 
-gem "will_paginate"
+gem 'will_paginate'
+
+gem 'pusher'
