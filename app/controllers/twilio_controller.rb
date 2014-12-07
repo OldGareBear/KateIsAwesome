@@ -42,6 +42,11 @@ class TwilioController < ApplicationController
 
     thanks(sender)
     
+    Pusher['sms'].trigger('sms_received', {
+      from: params['From'],
+      body: params['Body']
+    })
+    
     redirect_to root_url
   end
 
