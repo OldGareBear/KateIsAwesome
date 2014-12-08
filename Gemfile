@@ -45,4 +45,4 @@ gem 'kaminari'
 
 gem 'will_paginate'
 
-# gem 'pusher' # not making pusher live yet
+gem 'pusher'
