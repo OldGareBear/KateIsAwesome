@@ -17,8 +17,6 @@
 </div>
 
 <script>
-	$('document').on("mouseover", function() {
-
 		$('img.like-btn').on("mouseover", function(event) {
 			var messageId = $(event.target).data("id");
 			
@@ -29,5 +27,4 @@
 			var messageId = $(event.target).data("id");
 			$("#" + messageId).addClass("hidden");
 		});
-	});
 </script>
