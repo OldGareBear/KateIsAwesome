@@ -42,10 +42,7 @@ class TwilioController < ApplicationController
 
     thanks(sender)
     
-    Pusher['sms'].trigger('sms_received', {
-      from: params['From'],
-      body: params['Body']
-    })
+    # trigger_event(sender, body) # not making pusher live yet
     
     redirect_to root_url
   end
@@ -76,6 +73,13 @@ class TwilioController < ApplicationController
     
     message = Message.new(body: body, admirer_id: admirer.id, city: city, state: state)
     message.save!
+  end
+  
+  def trigger_event(sender, body)
+    Pusher['sms'].trigger('sms_received', {
+      from: sender,
+      body: body
+    })
   end
 
   def thanks(sender)
