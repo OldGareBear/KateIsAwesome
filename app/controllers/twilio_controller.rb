@@ -77,7 +77,7 @@ class TwilioController < ApplicationController
   end
   
   def trigger_event(sender, body)
-    Pusher['sms'].trigger('sms_received', {
+    Pusher.trigger('sms', 'sms_received', {
       from: sender,
       body: body
     });
