@@ -45,16 +45,16 @@
  </script>
 
 <script>
-	setTimeout(function() {
-		$('img.like-btn').on("mouseover", function(event) {
+	$(function() {
+		$('div.all-messages').on("mouseover", 'img.like-btn', function(event) {
 			var messageId = $(event.target).data("id");
 			
 			$("#" + messageId).removeClass("hidden");
 		});
 		
-		$('img.like-btn').on("mouseleave", function(event) {
+		$('div.all-messages').on("mouseleave", 'img.like-btn', function(event) {
 			var messageId = $(event.target).data("id");
 			$("#" + messageId).addClass("hidden");
 		});
-	}, 1000);
+	});
 </script>
