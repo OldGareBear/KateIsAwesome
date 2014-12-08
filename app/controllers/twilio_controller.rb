@@ -75,12 +75,12 @@ class TwilioController < ApplicationController
     message.save!
   end
   
-  def trigger_event(sender, body)
-    Pusher['sms'].trigger('sms_received', {
-      from: sender,
-      body: body
-    })
-  end
+  # def trigger_event(sender, body)
+  #   Pusher['sms'].trigger('sms_received', {
+  #     from: sender,
+  #     body: body
+  #   })
+  # end
 
   def thanks(sender)
     sid = ENV["TWILIO_SID"]
