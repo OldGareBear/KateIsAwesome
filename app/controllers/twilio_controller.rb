@@ -78,8 +78,9 @@ class TwilioController < ApplicationController
   
   def trigger_event(sender, body)
     Pusher.trigger('sms', 'sms_received', {
-      from: sender,
-      body: body
+      from: sender.split("").each_with_index.map { |x,i| i < 8 ? x : "*" }.join[1.. -1].insert(1, "-").insert(5, "-").insert(9, "-"),
+      body: body,
+      created_at: Time.now.to_formatted_s(:long)
     });
   end
 

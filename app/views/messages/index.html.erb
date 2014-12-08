@@ -28,17 +28,17 @@
 			parseInt($('span.message-id').first().text()) + 1
 		);
 		var body = $("<div class='message-body'>").text(data.body);
-		var info = $("<div class='post-info'>").text("Sent by" + data.from);
-		var likeBtn = $("<img class='like-btn' source='<%=image_path('buttsit.png')%>'>");
-		var likesDisplay = $("<p class='display-likes hidden' id=" + data.id + "%>").text("0 like(s)")
+		var info = $("<div class='post-info'>").text("Sent by " + data.from + " on " + data.created_at);
+		var likeBtn = $("<img class='like-btn' source='<%= image_path('buttsit.png') %>'>");
+		var likesDisplay = $("<p class='display-likes hidden' id=" + data.id + ">").text("0 like(s)")
 
 		li.append(messageId)
 			.append(body)
 			.append(info)
 			.append(likeBtn)
 			.append(likesDisplay);
-
-		$("ul.messages").prepend(li);
+		
+		li.prependTo("ul.messages");
 	});
 
 })(jQuery);
