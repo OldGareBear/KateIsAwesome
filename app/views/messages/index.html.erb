@@ -29,7 +29,7 @@
 		);
 		var body = $("<div class='message-body'>").text(data.body);
 		var info = $("<div class='post-info'>").text("Sent by" + data.from);
-		var likeBtn = $("<img class='like-btn' source='<%= @buttsit %>");
+		var likeBtn = $("<img class='like-btn' source='image_path(/'buttsit.png/')'");
 		var likesDisplay = $("<p class='display-likes hidden' id='<%= data.id %>'>").text("0 like(s)")
 
 		li.append(messageId)
