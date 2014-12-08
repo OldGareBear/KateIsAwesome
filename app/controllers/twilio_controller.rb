@@ -80,7 +80,7 @@ class TwilioController < ApplicationController
     Pusher['sms'].trigger('sms_received', {
       from: sender,
       body: body
-    })
+    });
   end
 
   def thanks(sender)

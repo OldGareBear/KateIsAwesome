@@ -23,6 +23,7 @@
 	var smsChannel = pusher.subscribe('sms');
 
 	smsChannel.bind('sms_received', function(data) {
+		console.log(data);
 		var li = $("<li class='message'>");
 		var messageId = $("<span class='message-id'>").text(
 			parseInt($('span.message-id').first().text()) + 1
